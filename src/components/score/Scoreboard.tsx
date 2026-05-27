@@ -11,23 +11,36 @@ import { saveMatch } from "@/app/(admin)/sessions/[id]/actions";
 type Team = { id: string; label: "A" | "B" | "C" };
 
 export function Scoreboard({ sessionId, teams }: { sessionId: string; teams: Team[] }) {
-  const [homeId, setHomeId] = useState(teams[0]?.id ?? "");
-  const [awayId, setAwayId] = useState(teams[1]?.id ?? "");
+  const [homeLabel, setHomeLabel] = useState<Team["label"] | "">(teams[0]?.label ?? "");
+  const [awayLabel, setAwayLabel] = useState<Team["label"] | "">(teams[1]?.label ?? "");
   const [home, setHome] = useState(0);
   const [away, setAway] = useState(0);
   const [pending, start] = useTransition();
 
-  const home_team = teams.find((t) => t.id === homeId);
-  const away_team = teams.find((t) => t.id === awayId);
+  const home_team = teams.find((t) => t.label === homeLabel);
+  const away_team = teams.find((t) => t.label === awayLabel);
+
   const finish = () => {
-    if (!home_team || !away_team || homeId === awayId) return toast.error("Selecione 2 times diferentes");
+    if (!home_team || !away_team || homeLabel === awayLabel) {
+      return toast.error("Selecione 2 times diferentes");
+    }
     if (home === away) return toast.error("Sem empate");
+    
     start(async () => {
       try {
-        await saveMatch({ sessionId, teamHome: homeId, teamAway: awayId, scoreHome: home, scoreAway: away });
+        await saveMatch({ 
+          sessionId, 
+          teamHome: home_team.id, 
+          teamAway: away_team.id, 
+          scoreHome: home, 
+          scoreAway: away 
+        });
         toast.success(`Time ${home > away ? home_team.label : away_team.label} venceu!`);
-        setHome(0); setAway(0);
-      } catch (e) { toast.error((e as Error).message); }
+        setHome(0); 
+        setAway(0);
+      } catch (e) { 
+        toast.error((e as Error).message); 
+      }
     });
   };
 
@@ -37,15 +50,19 @@ export function Scoreboard({ sessionId, teams }: { sessionId: string; teams: Tea
       <CardContent className="space-y-6">
         <div className="grid grid-cols-2 gap-4">
           <TeamCol
-            teams={teams.filter((t) => t.id !== awayId)}
-            value={homeId} onChange={setHomeId}
-            score={home} setScore={setHome}
+            teams={teams.filter((t) => t.label !== awayLabel)}
+            value={homeLabel} 
+            onChange={(v) => setHomeLabel(v as Team["label"])}
+            score={home} 
+            setScore={setHome}
             color="#FF6B6B"
           />
           <TeamCol
-            teams={teams.filter((t) => t.id !== homeId)}
-            value={awayId} onChange={setAwayId}
-            score={away} setScore={setAway}
+            teams={teams.filter((t) => t.label !== homeLabel)}
+            value={awayLabel} 
+            onChange={(v) => setAwayLabel(v as Team["label"])}
+            score={away} 
+            setScore={setAway}
             color="#4ECDC4"
           />
         </div>
@@ -68,7 +85,7 @@ function TeamCol({
       <Select value={value} onValueChange={(v) => onChange(v ?? "")}>
         <SelectTrigger className="w-full"><SelectValue placeholder="Time" /></SelectTrigger>
         <SelectContent>
-          {teams.map((t) => <SelectItem key={t.id} value={t.id}>Time {t.label}</SelectItem>)}
+          {teams.map((t) => <SelectItem key={t.id} value={t.label}>Time {t.label}</SelectItem>)}
         </SelectContent>
       </Select>
       <div className="text-7xl font-bold tabular-nums" style={{ color }}>{score}</div>
