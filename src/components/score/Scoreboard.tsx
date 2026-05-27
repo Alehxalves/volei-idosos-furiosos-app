@@ -83,12 +83,23 @@ function TeamCol({
   return (
     <div className="flex flex-col items-center gap-3 p-4 rounded-lg" style={{ backgroundColor: `${color}11` }}>
       <Select value={value} onValueChange={(v) => onChange(v ?? "")}>
-        <SelectTrigger className="w-full"><SelectValue placeholder="Time" /></SelectTrigger>
+        <SelectTrigger className="w-full">
+          <div className="flex gap-1 items-center">
+            <span>Time</span>
+            <SelectValue placeholder="" />
+          </div>
+        </SelectTrigger>
         <SelectContent>
-          {teams.map((t) => <SelectItem key={t.id} value={t.label}>Time {t.label}</SelectItem>)}
+          {teams.map((t) => (
+            <SelectItem key={t.id} value={t.label}>
+              {t.label}
+            </SelectItem>
+          ))}
         </SelectContent>
       </Select>
+      
       <div className="text-7xl font-bold tabular-nums" style={{ color }}>{score}</div>
+      
       <div className="flex gap-2">
         <Button size="icon" variant="outline" onClick={() => setScore(Math.max(0, score - 1))}>
           <Minus className="h-4 w-4" />
@@ -100,3 +111,5 @@ function TeamCol({
     </div>
   );
 }
+
+
