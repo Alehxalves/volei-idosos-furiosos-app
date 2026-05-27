@@ -130,11 +130,28 @@ function Hero({ isLoggedIn }: { isLoggedIn: boolean }) {
         </Link>
       </motion.div>
 
+      {/* Container da Animação em Vídeo */}
+      <motion.div
+        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ delay: 0.6, duration: 0.5, type: "spring" }}
+        className="mt-14 mx-auto max-w-2xl rounded-2xl overflow-hidden shadow-2xl shadow-primary/10 border border-muted/30 bg-background/50 backdrop-blur-sm"
+      >
+        <video
+          src="/volleyball-match.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-auto object-cover pointer-events-none"
+        />
+      </motion.div>
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.7 }}
-        className="mt-16 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
+        transition={{ delay: 0.8 }}
+        className="mt-14 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground"
       >
         {[
           { emoji: "📋", label: "Cola a lista" },
@@ -146,7 +163,7 @@ function Hero({ isLoggedIn }: { isLoggedIn: boolean }) {
             key={s.label}
             initial={{ y: 8, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.8 + i * 0.08 }}
+            transition={{ delay: 0.9 + i * 0.08 }}
             whileHover={{ y: -3 }}
             className="inline-flex items-center gap-2"
           >
