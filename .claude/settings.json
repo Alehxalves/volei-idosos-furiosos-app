@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python skills/ui-ux-pro-max/scripts/search.py \"sports admin dashboard dark modern navbar\" --design-system -p \"Idosos e Furiosos\" -f markdown)",
+      "Bash(python \"C:\\\\Users\\\\kovacs\\\\.claude\\\\plugins\\\\cache\\\\ui-ux-pro-max-skill\\\\ui-ux-pro-max\\\\2.5.0\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"sports admin dashboard dark modern navbar\" --design-system -p \"Idosos e Furiosos\" -f markdown)",
+      "Bash(python \"C:\\\\Users\\\\kovacs\\\\.claude\\\\plugins\\\\cache\\\\ui-ux-pro-max-skill\\\\ui-ux-pro-max\\\\2.5.0\\\\cli\\\\assets\\\\scripts\\\\search.py\" \"sports admin dashboard dark modern navbar\" --design-system -p \"Idosos e Furiosos\" -f markdown)"
+    ]
+  }
+}

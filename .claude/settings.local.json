@@ -3,7 +3,19 @@
     "allow": [
       "Bash(rtk ls *)",
       "Bash(pnpm -v)",
-      "Bash(pnpm create *)"
+      "Bash(pnpm create *)",
+      "Bash(pnpm add *)",
+      "Bash(pnpm dlx *)",
+      "Bash(SKIP_ENV=1 rtk tsc --noEmit)",
+      "Bash(rtk tsc *)",
+      "Bash(SKIP_ENV_VALIDATION=1 NEXT_PUBLIC_SUPABASE_URL=https://x.supabase.co NEXT_PUBLIC_SUPABASE_ANON_KEY=x SUPABASE_SERVICE_ROLE_KEY=x pnpm build)",
+      "Bash(pnpm build *)",
+      "Bash(python \"C:\\\\Users\\\\kovacs\\\\.claude\\\\plugins\\\\cache\\\\ui-ux-pro-max-skill\\\\ui-ux-pro-max\\\\2.5.0\\\\.claude\\\\skills\\\\ui-ux-pro-max\\\\scripts\\\\search.py\" \"volleyball sport community team sportive vibrant friendly modern\" --design-system -f markdown)",
+      "Bash(find \"C:/Users/kovacs/.claude/plugins/cache/ui-ux-pro-max-skill\" -name \"search.py\" 2>&1 | head -5)",
+      "Read(//c/Users/kovacs/.claude/plugins/cache/ui-ux-pro-max-skill/**)",
+      "Bash(python \"C:/Users/kovacs/.claude/plugins/cache/ui-ux-pro-max-skill/ui-ux-pro-max/2.5.0/src/ui-ux-pro-max/scripts/search.py\" \"sport community team management saas modern vibrant friendly\" --design-system -f markdown)",
+      "WebFetch(domain:supabase.com)",
+      "WebSearch"
     ]
   }
 }
